@@ -7,7 +7,7 @@ import (
 	"runtime"
 	"strconv"
 
-	"go.haiyiyun.org/log"
+	"github.com/haiyiyun/log"
 )
 
 type ValidationError struct {

@@ -1,3 +1,3 @@
-module go.haiyiyun.org/validator
+module github.com/haiyiyun/validator
 
 go 1.16
