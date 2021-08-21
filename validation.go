@@ -155,6 +155,10 @@ func (v *Validation) Or(want int, strs ...string) *ValidationResult {
 	return v.apply(Or{Want: want}, strs)
 }
 
-func (v *Validation) Confirm(string, string_confirm string) *ValidationResult {
-	return v.apply(Confirm(string), string_confirm)
+func (v *Validation) Confirm(str, str_confirm string) *ValidationResult {
+	return v.apply(Confirm(str), str_confirm)
+}
+
+func (v *Validation) Have(item string, items ...string) *ValidationResult {
+	return v.apply(Have{Item: item}, items)
 }

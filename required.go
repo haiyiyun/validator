@@ -3,6 +3,8 @@ package validator
 import (
 	"strconv"
 	"time"
+
+	"github.com/haiyiyun/utils/help"
 )
 
 type Required struct{}
@@ -65,4 +67,16 @@ func (o Or) IsSatisfied(obj interface{}) bool {
 
 func (o Or) DefaultMessage() string {
 	return "Contains at least " + strconv.Itoa(o.Want) + ", currently contains only " + strconv.Itoa(o.Included)
+}
+
+type Have struct {
+	Item string
+}
+
+func (h Have) IsSatisfied(obj interface{}) bool {
+	return help.NewSlice(obj).CheckItem(h.Item)
+}
+
+func (h Have) DefaultMessage() string {
+	return "Not found " + h.Item
 }
