@@ -119,6 +119,10 @@ func (v *Validation) Required(obj interface{}) *ValidationResult {
 	return v.apply(Required{}, obj)
 }
 
+func (v *Validation) Digital(obj interface{}) *ValidationResult {
+	return v.apply(Digital{}, obj)
+}
+
 func (v *Validation) Min(n int, min int) *ValidationResult {
 	return v.apply(Min{min}, n)
 }
@@ -159,6 +163,6 @@ func (v *Validation) Confirm(str, str_confirm string) *ValidationResult {
 	return v.apply(Confirm(str), str_confirm)
 }
 
-func (v *Validation) Have(item string, items ...string) *ValidationResult {
+func (v *Validation) Have(item interface{}, items ...interface{}) *ValidationResult {
 	return v.apply(Have{Item: item}, items)
 }

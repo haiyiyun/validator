@@ -1,6 +1,7 @@
 package validator
 
 import (
+	"fmt"
 	"strconv"
 	"time"
 
@@ -10,30 +11,31 @@ import (
 type Required struct{}
 
 func (r Required) IsSatisfied(obj interface{}) bool {
-	if obj == nil {
-		return false
-	}
-
 	if str, ok := obj.(string); ok {
 		return len(str) > 0
 	}
+
 	if list, ok := obj.([]interface{}); ok {
 		return len(list) > 0
 	}
+
 	if list, ok := obj.([]string); ok {
 		return len(list) > 0
 	}
+
 	if b, ok := obj.(bool); ok {
 		return b
 	}
+
 	if i, ok := obj.(int); ok {
 		return i != 0
 	}
+
 	if t, ok := obj.(time.Time); ok {
 		return !t.IsZero()
 	}
 
-	return true
+	return false
 }
 
 func (r Required) DefaultMessage() string {
@@ -70,13 +72,38 @@ func (o Or) DefaultMessage() string {
 }
 
 type Have struct {
-	Item string
+	Item interface{}
 }
 
 func (h Have) IsSatisfied(obj interface{}) bool {
-	return help.NewSlice(obj).CheckItem(h.Item)
+	if str, ok := h.Item.(string); ok {
+		return help.NewSlice(obj).CheckItem(str)
+	}
+
+	if i, ok := obj.(int); ok {
+		return help.NewSlice(obj).CheckDigital(i)
+	}
+
+	return false
 }
 
 func (h Have) DefaultMessage() string {
-	return "Not found " + h.Item
+	return fmt.Sprint("Not found ", h.Item)
+}
+
+type Digital struct {
+}
+
+func (d Digital) IsSatisfied(obj interface{}) bool {
+	if str, ok := obj.(string); ok {
+		if _, err := strconv.Atoi(str); err == nil {
+			return true
+		}
+	}
+
+	return false
+}
+
+func (d Digital) DefaultMessage() string {
+	return fmt.Sprint("not digital")
 }
