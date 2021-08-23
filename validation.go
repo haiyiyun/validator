@@ -155,6 +155,10 @@ func (v *Validation) Email(str string) *ValidationResult {
 	return v.apply(Email{Match{EmailRegexp}}, str)
 }
 
+func (v *Validation) ChinaMobile(str string) *ValidationResult {
+	return v.apply(ChinaMobile{Match{ChinaMobileRegexp}}, str)
+}
+
 func (v *Validation) Or(want int, strs ...string) *ValidationResult {
 	return v.apply(Or{Want: want}, strs)
 }
