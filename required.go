@@ -107,3 +107,20 @@ func (d Digital) IsSatisfied(obj interface{}) bool {
 func (d Digital) DefaultMessage() string {
 	return fmt.Sprint("not digital")
 }
+
+type Float struct {
+}
+
+func (d Float) IsSatisfied(obj interface{}) bool {
+	if str, ok := obj.(string); ok {
+		if _, err := strconv.ParseFloat(str, 64); err == nil {
+			return true
+		}
+	}
+
+	return false
+}
+
+func (d Float) DefaultMessage() string {
+	return fmt.Sprint("not float")
+}

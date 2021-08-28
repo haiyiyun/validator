@@ -123,6 +123,10 @@ func (v *Validation) Digital(obj interface{}) *ValidationResult {
 	return v.apply(Digital{}, obj)
 }
 
+func (v *Validation) Float(obj interface{}) *ValidationResult {
+	return v.apply(Float{}, obj)
+}
+
 func (v *Validation) Min(n int, min int) *ValidationResult {
 	return v.apply(Min{min}, n)
 }
