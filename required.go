@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/haiyiyun/utils/help"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type Required struct{}
@@ -123,4 +124,21 @@ func (d Float) IsSatisfied(obj interface{}) bool {
 
 func (d Float) DefaultMessage() string {
 	return fmt.Sprint("not float")
+}
+
+type BsonObjectID struct {
+}
+
+func (boid BsonObjectID) IsSatisfied(obj interface{}) bool {
+	if str, ok := obj.(string); ok {
+		if _, err := primitive.ObjectIDFromHex(str); err == nil {
+			return true
+		}
+	}
+
+	return false
+}
+
+func (boid BsonObjectID) DefaultMessage() string {
+	return fmt.Sprint("not bson ObjectID")
 }

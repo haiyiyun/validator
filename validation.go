@@ -174,3 +174,7 @@ func (v *Validation) Confirm(str, str_confirm string) *ValidationResult {
 func (v *Validation) Have(item interface{}, items ...interface{}) *ValidationResult {
 	return v.apply(Have{Item: item}, items)
 }
+
+func (v *Validation) BsonObjectID(obj interface{}) *ValidationResult {
+	return v.apply(BsonObjectID{}, obj)
+}
