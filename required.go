@@ -78,11 +78,30 @@ type Have struct {
 
 func (h Have) IsSatisfied(obj interface{}) bool {
 	if str, ok := h.Item.(string); ok {
-		return help.NewSlice(obj).CheckItem(str)
+		strs := []string{}
+		if objs, ok := obj.([]interface{}); ok {
+			for _, v := range objs {
+				if vstr, ok := v.(string); ok {
+					strs = append(strs, vstr)
+				}
+			}
+
+			return help.NewSlice(strs).CheckItem(str)
+		}
+
 	}
 
-	if i, ok := obj.(int); ok {
-		return help.NewSlice(obj).CheckDigital(i)
+	if i, ok := h.Item.(int); ok {
+		is := []int{}
+		if objs, ok := obj.([]interface{}); ok {
+			for _, v := range objs {
+				if vint, ok := v.(int); ok {
+					is = append(is, vint)
+				}
+			}
+
+			return help.NewSlice(is).CheckDigital(i)
+		}
 	}
 
 	return false
