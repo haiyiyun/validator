@@ -1,9 +1,11 @@
 module github.com/haiyiyun/validator
 
-go 1.16
+go 1.17
 
 require (
-	github.com/haiyiyun/log v0.0.0-20210818124914-8d331595b3c9
-	github.com/haiyiyun/utils v0.0.0-20210823143651-1762e474b7af
-	go.mongodb.org/mongo-driver v1.7.3
+	github.com/haiyiyun/log v0.0.0-20211115100502-be01af77681c
+	github.com/haiyiyun/utils v0.0.0-20211105034731-d0029224e45e
+	go.mongodb.org/mongo-driver v1.7.4
 )
+
+require github.com/haiyiyun/uuid v0.0.0-20210818125821-3143cf8e1058 // indirect
