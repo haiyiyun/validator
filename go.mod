@@ -3,9 +3,9 @@ module github.com/haiyiyun/validator
 go 1.17
 
 require (
-	github.com/haiyiyun/log v0.0.0-20211115100502-be01af77681c
-	github.com/haiyiyun/utils v0.0.0-20211105034731-d0029224e45e
-	go.mongodb.org/mongo-driver v1.7.4
+	github.com/leodido/go-urn v1.2.1
+	golang.org/x/crypto v0.0.0-20211117183948-ae814b36b871
+	golang.org/x/text v0.3.7
 )
 
-require github.com/haiyiyun/uuid v0.0.0-20210818125821-3143cf8e1058 // indirect
+require golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect
