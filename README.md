@@ -19,11 +19,11 @@ Installation
 
 Use go get.
 
- go get github.com/haiyiyun/validator
+    go get github.com/haiyiyun/validator
 
 Then import the validator package into your own code.
 
- import "github.com/haiyiyun/validator"
+    import "github.com/haiyiyun/validator"
 
 Error Return Value
 -------
