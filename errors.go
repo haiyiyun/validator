@@ -3,6 +3,7 @@ package validator
 import (
 	"bytes"
 	"fmt"
+	"math/rand"
 	"reflect"
 	"strings"
 
@@ -272,4 +273,19 @@ func (fe *fieldError) Translate(ut ut.Translator) string {
 	}
 
 	return fn(ut, fe)
+}
+
+func RandomErrorString(errs map[string]interface{}) string {
+	keys := []string{}
+	for key, _ := range errs {
+		keys = append(keys, key)
+	}
+
+	lKey := len(keys)
+	key := keys[rand.Intn(lKey)]
+	if err, ok := errs[key].(ValidationErrors); ok {
+		return err.Error()
+	} else {
+		return "Invalid Validation Error"
+	}
 }
