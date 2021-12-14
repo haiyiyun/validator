@@ -198,7 +198,6 @@ var (
 		"postcode_iso3166_alpha2":       isPostcodeByIso3166Alpha2,
 		"postcode_iso3166_alpha2_field": isPostcodeByIso3166Alpha2Field,
 		"bic":                           isIsoBicFormat,
-		"bson_object_id":                isBsonObjectID,
 	}
 )
 
@@ -2407,16 +2406,4 @@ func isIsoBicFormat(fl FieldLevel) bool {
 	bicString := fl.Field().String()
 
 	return bicRegex.MatchString(bicString)
-}
-
-func isBsonObjectID(fl FieldLevel) bool {
-	s := fl.Field().String()
-
-	if len(s) != 24 {
-		return false
-	}
-
-	_, err := hex.DecodeString(s)
-
-	return err == nil
 }
